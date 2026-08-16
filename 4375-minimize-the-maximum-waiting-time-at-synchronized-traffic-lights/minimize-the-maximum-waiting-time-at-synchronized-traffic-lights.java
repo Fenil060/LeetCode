@@ -3,36 +3,39 @@ class Solution {
         int st = 0;
         int end = period;
 
-        Arrays.sort(lights);
-        Arrays.sort(arrivalTime);
+        int max = 0;
+        for(int l : lights){
+            max = Math.max(max, l);
+        }
+
         int ans = Integer.MAX_VALUE;
 
-        while(st < end){
-            int mid = st + (end-st)/2;
+        while (st < end) {
+            int mid = st + (end - st) / 2;
 
-            if(possible(mid, period, lights, arrivalTime)){
+            if (possible(mid, period, max, arrivalTime)) {
                 ans = mid;
                 end = mid;
-            }else{
-                st = mid+1;
+            } else {
+                st = mid + 1;
             }
         }
-    return ans;
+        return ans;
     }
 
-    public boolean possible(int m, int p, int []l, int []a){
+    public boolean possible(int m, int p, int l, int[] a) {
 
-        for(int i=0; i<a.length; i++){
+        for (int i = 0; i < a.length; i++) {
             int rem = a[i] % p;
-            int maxLight = l[l.length-1];
+            int maxLight = l;
 
-            if(rem >= maxLight){
+            if (rem >= maxLight) {
                 int waitingTime = p - rem;
-                if(waitingTime > m){
+                if (waitingTime > m) {
                     return false;
                 }
             }
         }
-    return true;
+        return true;
     }
 }

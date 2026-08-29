@@ -29,8 +29,7 @@ class Solution {
             }
 
             Collections.sort(indices);
-            Collections.sort(values);
-
+           
             for (int i = 0; i < values.size(); i++) {
                 nums[indices.get(i)] = values.get(i);
             }

@@ -19,34 +19,32 @@ class Solution {
         return count;
     }
 
-   public boolean dfs(int i, int j, int[][] grid) {
-    int n = grid.length;
-    int m = grid[0].length;
+    public boolean dfs(int i, int j, int[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
 
-    if (i < 0 || j < 0 || i >= n || j >= m)
-        return false;
+        // if (i < 0 || j < 0 || i >= n || j >= m)
+        //     return false;
 
-    if (grid[i][j] == 1)
-        return true;
+        if (grid[i][j] == 1)
+            return true;
 
-    if (i == 0 || j == 0 || i == n - 1 || j == m - 1)
-        return false;
+        if (i == 0 || j == 0 || i == n - 1 || j == m - 1)
+            return false;
 
-    grid[i][j] = 1;
+        grid[i][j] = 1;
 
-    boolean closed = true;
+        boolean closed = true;
 
-    for (int k = 0; k < 4; k++) {
-        int nr = i + dr[k];
-        int nc = j + dc[k];
+        for (int k = 0; k < 4; k++) {
+            int nr = i + dr[k];
+            int nc = j + dc[k];
 
-        if (!dfs(nr, nc, grid)) {
-            closed = false;
+            if (!dfs(nr, nc, grid)) {
+                closed = false;
+            }
         }
+
+        return closed;
     }
-
-    
-
-    return closed;
-}
 }
